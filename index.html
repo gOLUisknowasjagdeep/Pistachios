@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpsCodify Landing Page</title>
+  <style>
+    /* General styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Slider container */
+    .slider-container {
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Images on left and right */
+    .image-left, .image-right {
+      width: 150px;
+      height: 150px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-image 0.5s ease;
+    }
+
+    /* Center content for "OpsCodify" */
+    .center-content {
+      width: 50%;
+      text-align: center;
+    }
+
+    .center-content h1 {
+      color: white;
+      font-size: 8em;
+      font-weight: bold;
+      margin: auto;
+    }
+
+    /* Arrows for navigation */
+    .arrow {
+      font-size: 2em;
+      cursor: pointer;
+      color: white;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      user-select: none;
+      padding: 0 15px;
+    }
+
+    .left-arrow {
+      left: 20px;
+    }
+
+    .right-arrow {
+      right: 20px;
+    }
+
+    /* Placeholder for the bottom content */
+    .bottom-content {
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000000;
+      color: white;
+      font-size: 1.2em;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .bottom-content img {
+      margin: 10px;
+      width: 80px; /* smaller image size */
+      height: 80px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    /* Hover effect for image enlargement */
+    .bottom-content img:hover {
+      transform: scale(2.5); /* Increase the image size on hover */
+    }
+
+      /* Button styling */
+.find-in-store {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.find-in-store button {
+  background-color: black; 
+  color: white; 
+  border: 2px solid white; 
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect with scaling and shadow */
+.find-in-store button:hover {
+  background-color: #ed4a4a; 
+  transform: scale(1.1); 
+  box-shadow: 0 4px 12px rgba(2, 251, 189, 0.836); 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .find-in-store button {
+    font-size: 1em;
+    padding: 8px 15px;
+  }
+}
+
+    /* Responsive design for small screens */
+    @media (max-width: 768px) {
+      .center-content h1 {
+        font-size: 2em;
+      }
+
+      .bottom-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .bottom-content img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <div class="arrow left-arrow" onclick="prevImage()">&#10094;</div>
+
+    <!-- Left side image -->
+    <div class="image-left" id="imageLeft"></div>
+
+    <!-- Centered OpsCodify text -->
+    <div class="center-content">
+      <h1>OpsCodify</h1>
+    </div>
+
+    <!-- Right side image -->
+    <div class="image-right" id="imageRight"></div>
+
+    <div class="arrow right-arrow" onclick="nextImage()">&#10095;</div>
+  </div>
+
+ <!-- Find in Store Button -->
+ <div class="find-in-store">
+    <button onclick="findInStore()">Find in Store</button>
+  </div>
+
+  <div class="bottom-content">
+    <!-- 10 Ice Cream Images -->
+    <img src="img/a_long.png" alt="Ice Cream 1" onclick="changeTopImage(0)" onmouseover="hoverImage(0)">
+    <img src="img/b_long.png" alt="Ice Cream 2" onclick="changeTopImage(1)" onmouseover="hoverImage(1)">
+    <img src="img/c_long.png" alt="Ice Cream 3" onclick="changeTopImage(2)" onmouseover="hoverImage(2)">
+    <img src="img/d_long.png" alt="Ice Cream 4" onclick="changeTopImage(3)" onmouseover="hoverImage(3)">
+    <img src="img/e_longy.png" alt="Ice Cream 5" onclick="changeTopImage(4)" onmouseover="hoverImage(4)">
+    <img src="img/b_long.png" alt="Ice Cream 6" onclick="changeTopImage(5)" onmouseover="hoverImage(5)">
+    <img src="img/c_long.png" alt="Ice Cream 7" onclick="changeTopImage(6)" onmouseover="hoverImage(6)">
+    <img src="img/d_long.png" alt="Ice Cream 8" onclick="changeTopImage(7)" onmouseover="hoverImage(7)">
+    <img src="img/a_long.png" alt="Ice Cream 9" onclick="changeTopImage(8)" onmouseover="hoverImage(8)">
+    <img src="img/b_long.png" alt="Ice Cream 10" onclick="changeTopImage(9)" onmouseover="hoverImage(9)">
+  </div>
+
+  <script>
+    const images = [
+      'img/a_ice.png',
+      'img/b_ice.png',
+      'img/c_ice.png',
+      'img/d_ice.png',
+      'img/e_ice.png',
+      'img/f_ice.png',
+      'img/a_ice.png',
+      'img/b_ice.png',
+      'img/c_ice.png',
+      'img/d_ice.png'
+    ];
+
+    let currentImageIndex = 0;
+
+    function updateImages() {
+      const imageLeft = document.getElementById('imageLeft');
+      const imageRight = document.getElementById('imageRight');
+      imageLeft.style.backgroundImage = `url(${images[currentImageIndex]})`;
+      imageRight.style.backgroundImage = `url(${images[currentImageIndex]})`;
+    }
+
+    function changeTopImage(index) {
+      currentImageIndex = index;
+      updateImages();
+    }
+
+    function hoverImage(index) {
+      // If the user hovers over an image in the bottom, update the top image
+      currentImageIndex = index;
+      updateImages();
+    }
+
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      updateImages();
+    }
+
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      updateImages();
+    }
+
+    // Initial load
+    updateImages();
+  </script>
+
+</body>  
+</html>
